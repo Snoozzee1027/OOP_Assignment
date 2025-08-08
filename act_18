@@ -1,0 +1,72 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        string[] passwords = new string[5];
+
+        // Ask user to enter 5 passwords
+        for (int i = 0; i < passwords.Length; i++)
+        {
+            Console.Write("Enter password #{0}: ", i + 1);
+            passwords[i] = Console.ReadLine();
+        }
+
+        Console.WriteLine("\nPassword Strength Results:\n");
+
+        foreach (string password in passwords)
+        {
+            bool hasLength = false;
+            bool hasUpper = false;
+            bool hasDigit = false;
+            bool hasSpecial = false;
+
+            // Check length
+            if (password.Length >= 8)
+                hasLength = true;
+
+            // Loop through each character to check other conditions
+            foreach (char c in password)
+            {
+                if (char.IsUpper(c))
+                    hasUpper = true;
+                else if (char.IsDigit(c))
+                    hasDigit = true;
+                else if (!char.IsLetterOrDigit(c))
+                    hasSpecial = true;
+            }
+
+            // Nested if-else to classify
+            if (hasLength)
+            {
+                if (hasUpper)
+                {
+                    if (hasDigit)
+                    {
+                        if (hasSpecial)
+                        {
+                            Console.WriteLine("Password: {0} → Strong", password);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Password: {0} → Weak (Missing special character)", password);
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Password: {0} → Weak (Missing digit)", password);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Password: {0} → Weak (Missing uppercase)", password);
+                }
+            }
+            else
+            {
+                Console.WriteLine("Password: {0} → Invalid (Too short)", password);
+            }
+        }
+    }
+}
