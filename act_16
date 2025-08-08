@@ -1,0 +1,35 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        // Create an array to store 5 symptoms
+        string[] symptoms = new string[5];
+
+        Console.WriteLine("Enter the symptoms of 5 patients:");
+
+        // Loop through each patient
+        for (int i = 0; i < 5; i++)
+        {
+            Console.Write("Enter symptom for patient " + (i + 1) + ": ");
+            symptoms[i] = Console.ReadLine().ToLower(); // make sure it's lowercase
+
+            // Check the symptom and assign to a department
+            if (symptoms[i] == "fever" || symptoms[i] == "cough")
+            {
+                Console.WriteLine("Department: General Medicine");
+            }
+            else if (symptoms[i] == "injury" || symptoms[i] == "burn")
+            {
+                Console.WriteLine("Department: Emergency");
+            }
+            else
+            {
+                Console.WriteLine("Department: Refer to Specialist");
+            }
+
+            Console.WriteLine(); // just a blank line to keep it neat
+        }
+    }
+}
